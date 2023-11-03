@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Chart } from "./components/chart"
 
 export function App() {
   interface IRepos {
@@ -47,6 +48,7 @@ export function App() {
           Search
         </button>
       </form>
+      <Chart />
     </>
   )
 }
