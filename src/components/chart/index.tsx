@@ -25,10 +25,11 @@ ChartJS.register(
 interface IInfoUser {
     username: string,
     nameTech: string[],
+    totalBytes: number[],
 }
 
 export function Chart(infoUser: IInfoUser) {
-    const bytes = [1050, 500, 3000, 5798, 20, 0]
+    const bytes = infoUser.totalBytes
     const techs = infoUser.nameTech
 
     const data = {
