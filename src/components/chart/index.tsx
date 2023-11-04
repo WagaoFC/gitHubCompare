@@ -22,19 +22,20 @@ ChartJS.register(
     Filler
 )
 
-interface ILanguage {
-    name: string[],
+interface IInfoUser {
+    username: string,
+    nameTech: string[],
 }
 
-export function Chart(language: ILanguage) {
+export function Chart(infoUser: IInfoUser) {
     const bytes = [1050, 500, 3000, 5798, 20, 0]
-    const techs = language.name
+    const techs = infoUser.nameTech
 
     const data = {
         labels: techs,
         datasets: [
             {
-                label: 'Wagner',
+                label: infoUser.username,
                 data: bytes,
                 borderColor: 'rgb(154, 99, 255)',
                 pointRadius: 3,

@@ -7,7 +7,8 @@ export function App() {
   }
 
   interface ILanguages {
-    tech: string,
+    name: string,
+    quantity: number
   }
 
   const [username, setUsername] = useState('')
@@ -15,13 +16,17 @@ export function App() {
   const [finalLanguages, setFinalLanguages] = useState<string[]>([])
 
   useEffect(() => {
+    listTechs()
+  }, [languageCollection])
+
+  function listTechs() {
     const allLanguages = languageCollection.reduce<string[]>((result, obj) => {
       const keys = Object.keys(obj);
       return result.concat(keys);
     }, []);
 
-    setFinalLanguages(allLanguages.filter((valor, indice, array) => array.indexOf(valor) === indice))
-  }, [languageCollection])
+    setFinalLanguages(allLanguages.filter((value, index, array) => array.indexOf(value) === index))
+  }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -54,7 +59,7 @@ export function App() {
           Search
         </button>
       </form>
-      <Chart name={finalLanguages} />
+      <Chart username={username} nameTech={finalLanguages} />
     </>
   )
 }
