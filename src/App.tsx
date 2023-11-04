@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Chart } from "./components/chart"
+import { Chart } from "./components/Chart"
 
 export function App() {
   interface IRepos {
@@ -12,9 +12,15 @@ export function App() {
 
   const [username, setUsername] = useState('')
   const [languageCollection, setLanguageCollection] = useState<ILanguages[]>([])
+  const [finalLanguages, setFinalLanguages] = useState<string[]>([])
 
   useEffect(() => {
-    console.log(languageCollection)
+    const allLanguages = languageCollection.reduce<string[]>((result, obj) => {
+      const keys = Object.keys(obj);
+      return result.concat(keys);
+    }, []);
+
+    setFinalLanguages(allLanguages.filter((valor, indice, array) => array.indexOf(valor) === indice))
   }, [languageCollection])
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -48,7 +54,7 @@ export function App() {
           Search
         </button>
       </form>
-      <Chart />
+      <Chart name={finalLanguages} />
     </>
   )
 }

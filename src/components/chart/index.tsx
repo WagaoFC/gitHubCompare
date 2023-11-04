@@ -22,23 +22,27 @@ ChartJS.register(
     Filler
 )
 
-const bytes = [1050, 500, 3000, 5798, 20, 0]
-const techs = ['HTML', 'CSS', 'JAVASCRIPT', 'TYPESCRIPT', 'C#', 'JAVA']
-
-const data = {
-    labels: techs,
-    datasets: [
-        {
-            label: 'Wagner',
-            data: bytes,
-            borderColor: 'rgb(154, 99, 255)',
-            pointRadius: 3,
-            pointBackgroundColor: 'rgba(154, 99, 255)',
-        }
-    ]
+interface ILanguage {
+    name: string[],
 }
 
-export function Chart() {
+export function Chart(language: ILanguage) {
+    const bytes = [1050, 500, 3000, 5798, 20, 0]
+    const techs = language.name
+
+    const data = {
+        labels: techs,
+        datasets: [
+            {
+                label: 'Wagner',
+                data: bytes,
+                borderColor: 'rgb(154, 99, 255)',
+                pointRadius: 3,
+                pointBackgroundColor: 'rgba(154, 99, 255)',
+            }
+        ]
+    }
+
     return (
         <Line 
             data={data}
