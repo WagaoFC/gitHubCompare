@@ -81,7 +81,14 @@ export function App() {
           {isLoading ? "Loading..." : "Search"}
         </button>
       </form>
-      <Chart username={username} nameTech={finalLanguages} totalBytes={finalBytes} />
+      {
+        languageCollection.length > 0 &&
+        <Chart
+          username={username}
+          nameTech={finalLanguages}
+          totalBytes={finalBytes}
+        />
+      }
     </>
   );
 }
