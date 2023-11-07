@@ -22,22 +22,13 @@ ChartJS.register(
     Filler
 )
 
-interface IInfoUser {
-    username: string,
-    nameTech: string[],
-    totalBytes: number[],
-}
-
-export function Chart(infoUser: IInfoUser) {
-    const bytes = infoUser.totalBytes
-    const techs = infoUser.nameTech
-
+export function Chart() {
     const data = {
-        labels: techs,
+        labels: ['HTML', 'TYPESCRIPT', 'CSS', 'JAVASCRIPT', 'C#', 'PHP'],
         datasets: [
             {
-                label: infoUser.username,
-                data: bytes,
+                label: 'Wagner',
+                data: ['50', '100', '30', '70', '5', '20'],
                 borderColor: 'rgb(154, 99, 255)',
                 pointRadius: 3,
                 pointBackgroundColor: 'rgba(154, 99, 255)',
