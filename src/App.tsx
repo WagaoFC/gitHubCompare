@@ -21,11 +21,14 @@ export function App() {
             <Mic />
           </button>
         </div>
-        <div className='min-h-screen grid grid-cols-2'>
-          <div>
+        <div className='grid grid-cols-3 gap-2'>
+          <div className='col-span-2'>
             <Chart />
           </div>
-          <div>
+          <div className='p-4 space-y-6 bg-current-line rounded-lg'>
+            <Users />
+            <Users />
+            <Users />
             <Users />
           </div>
         </div>
