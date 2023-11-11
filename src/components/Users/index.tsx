@@ -1,4 +1,4 @@
-import { PlusCircle } from "lucide-react";
+import { PlusCircle } from 'lucide-react'
 
 export function Users() {
     return (
@@ -8,16 +8,16 @@ export function Users() {
                     className='rounded-full w-10'
                     src='https://avatars.githubusercontent.com/u/48607604?v=4'
                 />
-                <section className='flex flex-col'>
-                <span className='font-medium'>
+                <section className='flex flex-col text-cyan-500'>
+                    <span className='font-medium'>
                         WagaoFC
                     </span>
-                    <span className='font-light text-sm'>
+                    <span className='font-normal text-sm text-cyan-500/50'>
                         Front-end Developer
                     </span>
                 </section>
             </div>
-            <button className='border-background rounded-lg px-3 py-2 shadow-lg'>
+            <button className='rounded-lg px-3 py-2 text-cyan-500 hover:rotate-90 duration-300'>
                 <PlusCircle />
             </button>
         </div>
