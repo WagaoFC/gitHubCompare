@@ -17,7 +17,7 @@ export function Users() {
                     </span>
                 </section>
             </div>
-            <button className='rounded-lg px-3 py-2 text-cyan-500 hover:rotate-90 duration-300'>
+            <button className='rounded-lg px-3 py-2 text-cyan-500 hover:rotate-90 duration-300 focus:border-cyan-500 focus:outline-none'>
                 <PlusCircle />
             </button>
         </div>

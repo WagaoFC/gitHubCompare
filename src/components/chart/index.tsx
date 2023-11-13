@@ -27,7 +27,7 @@ export function Chart() {
         labels: ['HTML', 'TYPESCRIPT', 'CSS', 'JAVASCRIPT', 'C#', 'PHP', 'C++', 'JAVA'],
         datasets: [
             {
-                label: 'Wagner',
+                label: 'WagaoFC',
                 data: ['50', '100', '40', '70', '5', '30', '50', '10'],
                 borderColor: 'rgb(154, 99, 255)',
                 pointRadius: 3,

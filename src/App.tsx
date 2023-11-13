@@ -7,8 +7,8 @@ export function App() {
   return (
     <div className='bg-slate-900 h-screen'>
       <header className='flex items-center justify-end px-4 py-2 gap-4 text-cyan-500'>
-        <Sun />
-        <Github />
+        <Sun size={20} />
+        <Github size={20} />
       </header>
       <main className='px-4 space-y-6'>
         <SearchInput />
