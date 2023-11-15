@@ -1,16 +1,52 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Search } from 'lucide-react'
+
+interface FollowerInfo {
+    avatar_url: string,
+    name: string,
+    bio: string | null
+}
 
 export function SearchInput() {
     const [userName, setUserName] = useState<string>('')
+    const [followers, setFollowers] = useState<string[]>([])
+
+    useEffect(() => {
+        fetchData()        
+    }, [followers])
+
+    async function fetchData() {
+        if (followers.length > 0) {
+          await getProfile(followers)
+        }
+    }
     
     function handleChange(e: any) {
         setUserName(e)
     }
 
-    function sendUsername(e: any) {
-        console.log(userName)
+    async function sendUsername(e: any) {
         e.preventDefault()
+        await getFollowers()
+    }
+
+    async function getFollowers() {
+        const response = await fetch(`https://api.github.com/users/${userName}/followers`)
+        const data = await response.json()
+        const followers = data.map((m: any) => m.login).sort(() => Math.random() - 0.5).slice(0, 5)
+
+        setFollowers(followers)
+    }
+
+    async function getProfile(followers: string[]) {
+        let info: FollowerInfo[] = []
+
+        for (let follower of followers) {
+            let response = await fetch(`https://api.github.com/users/${follower}`)
+            let { avatar_url, name, bio } = await response.json()
+
+            info.push({ avatar_url, name, bio })
+        }
     }
 
     return (
