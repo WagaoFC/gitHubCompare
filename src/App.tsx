@@ -1,7 +1,7 @@
 import { Github, Sun } from 'lucide-react'
 import { Chart } from './components/Chart'
 import { Users } from './components/Users'
-import { SearchInput } from './components/SearchInput'
+import { SearchForm } from './components/SearchForm'
 
 export function App() {
   return (
@@ -11,7 +11,7 @@ export function App() {
         <Github size={20} />
       </header>
       <main className='px-4 space-y-6'>
-        <SearchInput />
+        <SearchForm />
         <div className='grid grid-cols-4 gap-2'>
           <div className='col-span-3'>
             <Chart />

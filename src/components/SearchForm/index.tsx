@@ -7,7 +7,7 @@ interface FollowerInfo {
     bio: string | null
 }
 
-export function SearchInput() {
+export function SearchForm() {
     const [userName, setUserName] = useState<string>('')
     const [followers, setFollowers] = useState<string[]>([])
 
