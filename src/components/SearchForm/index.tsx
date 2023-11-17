@@ -12,15 +12,15 @@ export function SearchForm() {
     const [followers, setFollowers] = useState<string[]>([])
 
     useEffect(() => {
-        fetchData()        
+        fetchData()
     }, [followers])
 
     async function fetchData() {
         if (followers.length > 0) {
-          await getProfile(followers)
+            await getProfile(followers)
         }
     }
-    
+
     function handleChange(e: any) {
         setUserName(e)
     }

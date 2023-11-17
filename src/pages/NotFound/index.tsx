@@ -1,5 +1,5 @@
 export function NotFound() {
-    return(
+    return (
         <h1>Not Found</h1>
     )
 }

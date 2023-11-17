@@ -1,4 +1,4 @@
-import { 
+import {
     Chart as ChartJS,
     CategoryScale,
     LinearScale,
@@ -51,7 +51,7 @@ export function Chart() {
     }
 
     return (
-        <Line 
+        <Line
             data={data}
         />
     )
