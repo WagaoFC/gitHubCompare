@@ -1,25 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Search } from 'lucide-react'
 
-interface FollowerInfo {
-    avatar_url: string,
-    name: string,
-    bio: string | null
+interface SearchFormProps {
+    getFollowers: (userName: string) => Promise<void>
 }
 
-export function SearchForm() {
-    const [userName, setUserName] = useState<string>('')
-    const [followers, setFollowers] = useState<string[]>([])
-
-    useEffect(() => {
-        fetchData()
-    }, [followers])
-
-    async function fetchData() {
-        if (followers.length > 0) {
-            await getProfile(followers)
-        }
-    }
+export function SearchForm({ getFollowers }: SearchFormProps) {
+    const [userName, setUserName] = useState('')
 
     function handleChange(e: any) {
         setUserName(e)
@@ -27,26 +14,7 @@ export function SearchForm() {
 
     async function sendUsername(e: any) {
         e.preventDefault()
-        await getFollowers()
-    }
-
-    async function getFollowers() {
-        const response = await fetch(`https://api.github.com/users/${userName}/followers`)
-        const data = await response.json()
-        const followers = data.map((m: any) => m.login).sort(() => Math.random() - 0.5).slice(0, 5)
-
-        setFollowers(followers)
-    }
-
-    async function getProfile(followers: string[]) {
-        let info: FollowerInfo[] = []
-
-        for (let follower of followers) {
-            let response = await fetch(`https://api.github.com/users/${follower}`)
-            let { avatar_url, name, bio } = await response.json()
-
-            info.push({ avatar_url, name, bio })
-        }
+        await getFollowers(userName)
     }
 
     return (

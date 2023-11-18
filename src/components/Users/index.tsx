@@ -1,19 +1,24 @@
 import { PlusCircle } from 'lucide-react'
+import { IUser } from '../../pages/Home'
 
-export function Users() {
+interface UserProps {
+    user: IUser
+}
+
+export function Users({ user }: UserProps) {
     return (
         <div className='flex items-center justify-between'>
             <div className='flex flex-row items-center justify-center gap-2'>
                 <img
                     className='rounded-full w-10'
-                    src='https://avatars.githubusercontent.com/u/48607604?v=4'
+                    src={user.avatar_url}
                 />
                 <section className='flex flex-col text-cyan-500'>
                     <span className='font-medium'>
-                        WagaoFC
+                        {user.name}
                     </span>
                     <span className='font-normal text-sm text-cyan-500/50'>
-                        Front-end Developer
+                        {user.bio}
                     </span>
                 </section>
             </div>
