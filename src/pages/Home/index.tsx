@@ -4,6 +4,7 @@ import { api } from '../../lib/axios'
 import { SearchForm } from '../../components/SearchForm'
 import { Chart } from '../../components/Chart'
 import { Users } from '../../components/Users'
+import { FollowerCard } from '../../components/FollowerCard'
 
 export interface IUser {
     id: number,
@@ -20,7 +21,7 @@ export function Home() {
         try {
             const response = await api.get(`/users/${userName}/followers`)
             const data = await response.data
-            const followers = data.map((m: any) => m.login).sort(() => Math.random() - 0.5).slice(0, 5)
+            const followers = data.map((m: any) => m.login).sort(() => Math.random() - 0.5).slice(0, 6)
 
             setFollowers(followers)
 
@@ -45,7 +46,7 @@ export function Home() {
 
     return (
         <div className='bg-slate-900 h-screen'>
-            <header className='flex items-center justify-end px-4 py-2 gap-4 text-cyan-500'>
+            <header className='flex items-center justify-end px-4 py-2 gap-4 text-cyan-500 animate-fade-up'>
                 <Sun size={20} />
                 <Github size={20} />
             </header>
@@ -55,10 +56,18 @@ export function Home() {
                     <div className='col-span-3'>
                         <Chart />
                     </div>
-                    <div className='p-4 space-y-6 border-l-2 border-cyan-500/20 shadow-sm'>
-                        {users.map((user) => (
-                            <Users key={user.id} user={user} />
-                        ))}
+                    <div className='p-4 space-y-6 border-l border-cyan-500/20 shadow-sm animate-fade-up'>
+                        <span className='text-cyan-500'>
+                            Add some followers
+                        </span>
+                        {
+                            users.length > 0 ?
+                                users.map((user) => (
+                                    <Users key={user.id} user={user} />
+                                ))
+                                :
+                                <FollowerCard />
+                        }
                     </div>
                 </div>
             </main>

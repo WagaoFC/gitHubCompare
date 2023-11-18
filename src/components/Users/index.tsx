@@ -7,17 +7,17 @@ interface UserProps {
 
 export function Users({ user }: UserProps) {
     return (
-        <div className='flex items-center justify-between'>
+        <div className='flex items-center justify-between animate-fade-left'>
             <div className='flex flex-row items-center justify-center gap-2'>
                 <img
                     className='rounded-full w-10'
                     src={user.avatar_url}
                 />
                 <section className='flex flex-col text-cyan-500'>
-                    <span className='font-medium'>
+                    <span className='font-medium overflow-hidden line-clamp-1'>
                         {user.name}
                     </span>
-                    <span className='font-normal text-sm text-cyan-500/50'>
+                    <span className='font-normal text-sm text-cyan-500/50 overflow-hidden line-clamp-1'>
                         {user.bio}
                     </span>
                 </section>
