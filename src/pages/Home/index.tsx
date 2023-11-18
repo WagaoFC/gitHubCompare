@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Github, Sun } from 'lucide-react'
 import { api } from '../../lib/axios'
 import { SearchForm } from '../../components/SearchForm'
@@ -28,8 +28,8 @@ export function Home() {
                 let response = await api.get(`/users/${follower}`)
                 let userData = await response.data
 
-                setUsers([
-                    ...users,
+                setUsers(prevUsers => [
+                    ...prevUsers,
                     {
                         id: userData.id,
                         avatar_url: userData.avatar_url,
