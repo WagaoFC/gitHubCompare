@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react'
-import { Github, Sun } from 'lucide-react'
 import { api } from '../../lib/axios'
 import { SearchForm } from '../../components/SearchForm'
 import { Chart } from '../../components/Chart'
 import { Users } from '../../components/Users'
 import { FollowerCard } from '../../components/FollowerCard'
+import { Header } from '../../components/Header'
 
 export interface IUser {
     id: number,
@@ -46,10 +46,7 @@ export function Home() {
 
     return (
         <div className='bg-slate-900 h-screen'>
-            <header className='flex items-center justify-end px-4 py-2 gap-4 text-cyan-500 animate-fade-up'>
-                <Sun size={20} />
-                <Github size={20} />
-            </header>
+            <Header />
             <main className='px-4 space-y-6'>
                 <SearchForm getFollowers={getFollowers} />
                 <div className='grid grid-cols-4 gap-2'>
