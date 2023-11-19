@@ -12,10 +12,17 @@ export function Users({ user }: UserProps) {
                 <img
                     className='rounded-full w-10'
                     src={user.avatar_url}
+                    alt='User profile photo'
                 />
                 <section className='flex flex-col text-cyan-500'>
                     <span className='font-medium overflow-hidden line-clamp-1'>
-                        {user.name}
+                        <a
+                            href={`https://github.com/${user.login}`}
+                            target='_blank'
+                            className='border-b border-transparent focus:border-cyan-500 focus:outline-none'
+                        >
+                            {user.name}
+                        </a>
                     </span>
                     <span className='font-normal text-sm text-cyan-500/50 overflow-hidden line-clamp-1'>
                         {user.bio}

@@ -7,7 +7,7 @@ export function Header() {
             <a
                 href='https://github.com/WagaoFC/gitHubCompare'
                 target='_blank'
-                className='p-1 border border-transparent hover:bg-cyan-500/20 rounded hover:text-cyan-500 hover:duration-500'
+                className='p-1 border border-transparent hover:bg-cyan-500/20 rounded hover:text-cyan-500 hover:duration-500 focus:border-cyan-500 focus:outline-none'
             >
                 <Github size={20} />
             </a>

@@ -8,6 +8,7 @@ import { Header } from '../../components/Header'
 
 export interface IUser {
     id: number,
+    login: string,
     avatar_url: string,
     name: string,
     bio: string | null
@@ -21,7 +22,7 @@ export function Home() {
         try {
             const response = await api.get(`/users/${userName}/followers`)
             const data = await response.data
-            const followers = data.map((m: any) => m.login).sort(() => Math.random() - 0.5).slice(0, 6)
+            const followers = data.map((m: any) => m.login).sort(() => Math.random() - 0.5).slice(0, 7)
 
             setFollowers(followers)
 
@@ -33,6 +34,7 @@ export function Home() {
                     ...prevUsers,
                     {
                         id: userData.id,
+                        login: userData.login,
                         avatar_url: userData.avatar_url,
                         name: userData.name,
                         bio: userData.bio
