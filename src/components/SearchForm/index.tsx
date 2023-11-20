@@ -9,10 +9,6 @@ export function SearchForm({ getFollowers }: SearchFormProps) {
     const [userName, setUserName] = useState('')
     const [loading, setLoading] = useState(false)
 
-    function handleChange(e: any) {
-        setUserName(e)
-    }
-
     async function sendUsername(e: any) {
         setLoading(true)
 
@@ -30,7 +26,7 @@ export function SearchForm({ getFollowers }: SearchFormProps) {
                     <input
                         className='flex-1 border-0 bg-transparent p-0 text-cyan-500 placeholder-cyan-500 focus:outline-none'
                         placeholder='username'
-                        onChange={(e) => handleChange(e.target.value)}
+                        onChange={(e) => setUserName(e.target.value)}
                     />
                 </div>
                 <button
