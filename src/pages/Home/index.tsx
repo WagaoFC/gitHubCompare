@@ -15,18 +15,19 @@ export interface IUser {
 }
 
 export function Home() {
-    const [followers, setFollowers] = useState<string[]>([])
     const [users, setUsers] = useState<IUser[]>([])
 
     const getFollowers = useCallback(async (userName: string) => {
         try {
             const response = await api.get(`/users/${userName}/followers`)
             const data = await response.data
-            const followers = data.map((m: any) => m.login).sort(() => Math.random() - 0.5).slice(0, 7)
+            const randomFollowers = data.map((m: any) => m.login).sort(() => Math.random() - 0.5).slice(0, 7)
 
-            setFollowers(followers)
+            if (users.length >= 7) {
+                setUsers([])
+            }
 
-            for (let follower of followers) {
+            for (let follower of randomFollowers) {
                 let response = await api.get(`/users/${follower}`)
                 let userData = await response.data
 
@@ -44,7 +45,7 @@ export function Home() {
         } finally {
             console.log('finally')
         }
-    }, [followers])
+    }, [users])
 
     return (
         <div className='bg-slate-900 h-screen'>
