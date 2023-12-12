@@ -42,6 +42,14 @@ export function Home() {
                     }
                 ])
             }
+
+            const repos = await api.get(`/users/${userName}/repos`)
+            console.log(repos)
+
+            if (repos.data.length === 30) {
+                const repos2 = await api.get(`/users/${userName}/repos?page=2`)
+                console.log(repos2)
+            }
         } finally {
             console.log('finally')
         }
