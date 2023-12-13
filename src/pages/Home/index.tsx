@@ -50,10 +50,15 @@ export function Home() {
 
             await getAllRepos(userName)
             console.log(allRepos)
+
+            for (let language of allRepos) {
+                let res = await api.get(`/repos/${userName}/${language.name}/languages`)
+                console.log(res)
+            }
         } finally {
             console.log('finally')
         }
-    }, [users, allRepos, setAllRepos])
+    }, [users, allRepos])
 
     const getAllRepos = async (userName: string) => {
         const repos: IAllRepos[] = []
