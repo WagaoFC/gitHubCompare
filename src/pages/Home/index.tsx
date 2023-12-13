@@ -14,8 +14,13 @@ export interface IUser {
     bio: string | null
 }
 
+export interface IAllRepos {
+    name: string
+}
+
 export function Home() {
     const [users, setUsers] = useState<IUser[]>([])
+    const [allRepos, setAllRepos] = useState<IAllRepos[]>([])
 
     const getFollowers = useCallback(async (userName: string) => {
         try {
@@ -23,7 +28,7 @@ export function Home() {
             const data = await response.data
             const randomFollowers = data.map((m: any) => m.login).sort(() => Math.random() - 0.5).slice(0, 7)
 
-            if (users.length >= 7) {
+            if (users.length) {
                 setUsers([])
             }
 
@@ -43,17 +48,29 @@ export function Home() {
                 ])
             }
 
-            const repos = await api.get(`/users/${userName}/repos`)
-            console.log(repos)
-
-            if (repos.data.length === 30) {
-                const repos2 = await api.get(`/users/${userName}/repos?page=2`)
-                console.log(repos2)
-            }
+            await getAllRepos(userName)
+            console.log(allRepos)
         } finally {
             console.log('finally')
         }
-    }, [users])
+    }, [users, allRepos, setAllRepos])
+
+    const getAllRepos = async (userName: string) => {
+        const repos: IAllRepos[] = []
+
+        const getReposPage = async (page: number) => {
+            const response = await api.get(`/users/${userName}/repos?page=${page}`)
+            const reposPage = response.data.map((repo: any) => ({ name: repo.name }))
+            repos.push(...reposPage)
+
+            if (repos.length === 30) {
+                await getReposPage(page + 1)
+            }
+        };
+
+        await getReposPage(1)
+        setAllRepos(repos)
+    }
 
     return (
         <div className='bg-slate-900 h-screen'>
