@@ -21,6 +21,7 @@ export interface IAllRepos {
 export function Home() {
     const [users, setUsers] = useState<IUser[]>([])
     const [allRepos, setAllRepos] = useState<IAllRepos[]>([])
+    const [test, setTest] = useState<any>([])
 
     const getFollowers = useCallback(async (userName: string) => {
         try {
@@ -51,10 +52,31 @@ export function Home() {
             await getAllRepos(userName)
             console.log(allRepos)
 
-            for (let language of allRepos) {
-                let res = await api.get(`/repos/${userName}/${language.name}/languages`)
-                console.log(res)
+            let countLanguage: any = {}
+
+            for (let repo of allRepos) {
+                let res = await api.get(`/repos/${userName}/${repo.name}/languages`)
+                let languages = res.data
+
+                for (let language in languages) {
+                    if (countLanguage[language]) {
+                        countLanguage[language] += languages[language]
+                    } else {
+                        countLanguage[language] = languages[language]
+                    }
+                }
             }
+
+            let arrayLanguages = Object.keys(countLanguage).map(language => ({
+                language: language,
+                total: countLanguage[language]
+            }))
+
+            if (arrayLanguages.length > 0) {
+                setTest(arrayLanguages)
+            }
+
+            console.log(arrayLanguages);
         } finally {
             console.log('finally')
         }
@@ -84,7 +106,7 @@ export function Home() {
                 <SearchForm getFollowers={getFollowers} />
                 <div className='grid grid-cols-4 gap-2'>
                     <div className='col-span-3'>
-                        <Chart />
+                        <Chart techs={test} />
                     </div>
                     <div className='p-4 space-y-6 border-l border-cyan-500/20 shadow-sm animate-fade-up'>
                         <span className='text-cyan-500'>

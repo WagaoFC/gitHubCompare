@@ -22,13 +22,14 @@ ChartJS.register(
     Filler
 )
 
-export function Chart() {
+export function Chart({ techs }: any) {
+
     const data = {
-        labels: ['HTML', 'TYPESCRIPT', 'CSS', 'JAVASCRIPT', 'C#', 'PHP', 'C++', 'JAVA'],
+        labels: techs.map((m: any) => m.language),
         datasets: [
             {
                 label: 'WagaoFC',
-                data: ['50', '100', '40', '70', '5', '30', '50', '10'],
+                data: techs.map((m: any) => m.total),
                 borderColor: 'rgb(6, 182, 212)',
                 pointRadius: 3,
                 pointBackgroundColor: 'rgba(6, 182, 212)',
